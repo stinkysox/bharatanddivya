@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import { motion } from "framer-motion";
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 interface VinylPlayerProps {
   isPlaying: boolean;
@@ -8,6 +8,7 @@ interface VinylPlayerProps {
 }
 
 const VinylPlayer: React.FC<VinylPlayerProps> = ({ isPlaying, onToggle }) => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
   return (
     <div className="relative w-full aspect-square bg-[#1a1a1a] rounded-[30px] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.6)] p-6 md:p-10 flex items-center justify-center border-t border-[#ffffff]/10 group transition-all duration-700 hover:shadow-[0_60px_100px_-20px_rgba(197,160,89,0.15)]">
 
@@ -25,11 +26,11 @@ const VinylPlayer: React.FC<VinylPlayerProps> = ({ isPlaying, onToggle }) => {
           onClick={onToggle}
         >
           {/* Groove Rings */}
-          {[...Array(12)].map((_, i) => (
+          {[...Array(isMobile ? 6 : 12)].map((_, i) => (
             <div
               key={i}
               className="absolute inset-0 rounded-full border border-black/40 pointer-events-none"
-              style={{ margin: `${i * 12}px` }}
+              style={{ margin: `${i * (isMobile ? 24 : 12)}px` }}
             />
           ))}
 

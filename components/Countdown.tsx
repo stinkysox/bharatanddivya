@@ -1,7 +1,6 @@
-
-import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 import RoseConfetti from './RoseConfetti';
 
 interface CountdownProps {
@@ -9,6 +8,7 @@ interface CountdownProps {
 }
 
 const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { amount: 0.3 });
   
@@ -41,7 +41,7 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
       <div className="relative">
         <motion.div
           key={val}
-          initial={{ y: 20, opacity: 0 }}
+          initial={isMobile ? { opacity: 0 } : { y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           className="text-6xl md:text-8xl font-royal text-[#f8f8f8] mb-2"
         >
@@ -73,11 +73,11 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
       </div>
 
       <motion.div 
-        animate={{ 
+        animate={isMobile ? { opacity: 0.4 } : { 
           opacity: [0.2, 0.4, 0.2],
           scale: isInView ? [1, 1.05, 1] : 1
         }}
-        transition={{ duration: 4, repeat: Infinity }}
+        transition={isMobile ? { duration: 0 } : { duration: 4, repeat: Infinity }}
         className="mt-20 w-32 h-32 rounded-full border border-[#c5a059]/20 flex items-center justify-center p-4 text-center text-[#c5a059] text-[9px] uppercase tracking-[0.2em]"
       >
         Save The Date<br/>12 . 12 . 25

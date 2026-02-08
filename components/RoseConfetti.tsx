@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 interface RoseConfettiProps {
   isActive: boolean;
@@ -53,6 +53,7 @@ const Petal: React.FC<PetalProps> = ({ delay }) => {
 };
 
 const RoseConfetti: React.FC<RoseConfettiProps> = ({ isActive }) => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -61,10 +62,12 @@ const RoseConfetti: React.FC<RoseConfettiProps> = ({ isActive }) => {
 
   if (!isActive || !isMounted) return null;
 
+  const count = isMobile ? 12 : 40;
+
   return (
     <div className="fixed inset-0 pointer-events-none z-[60] overflow-hidden">
-      {[...Array(40)].map((_, i) => (
-        <Petal key={i} delay={i * 0.2} />
+      {[...Array(count)].map((_, i) => (
+        <Petal key={i} delay={i * (isMobile ? 0.6 : 0.2)} />
       ))}
     </div>
   );

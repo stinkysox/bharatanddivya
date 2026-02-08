@@ -1,5 +1,6 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 interface VintageLightsProps {
   isOn: boolean;
@@ -7,10 +8,11 @@ interface VintageLightsProps {
 }
 
 const VintageLights: React.FC<VintageLightsProps> = ({ isOn, onToggle }) => {
-  const bulbCount = 20;
-  const [isMounted, setIsMounted] = React.useState(false);
+  const isMobile = useMediaQuery('(max-width: 768px)');
+  const bulbCount = isMobile ? 10 : 20;
+  const [isMounted, setIsMounted] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsMounted(true);
   }, []);
   
@@ -54,9 +56,9 @@ const VintageLights: React.FC<VintageLightsProps> = ({ isOn, onToggle }) => {
                 initial={false}
                 animate={{
                   backgroundColor: isOn ? colorSet.on : colorSet.off,
-                  boxShadow: isOn 
+                  boxShadow: isOn && !isMobile
                     ? `0 0 10px ${colorSet.glow}, 0 0 20px ${colorSet.glow}` 
-                    : '0 0 0px transparent',
+                    : 'none',
                   opacity: isOn ? 1 : 0.6,
                 }}
                 transition={{

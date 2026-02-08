@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 const MarigoldGarland: React.FC<{ delay?: number; className?: string }> = ({ delay = 0, className }) => {
   // Create a string of flowers
@@ -110,6 +110,7 @@ const RangoliPattern = () => (
 );
 
 const FestiveCenterpiece: React.FC = () => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -124,7 +125,7 @@ const FestiveCenterpiece: React.FC = () => {
       {/* Rotating Mandala Background */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
         <motion.div
-            animate={{ rotate: 360 }}
+            animate={isMobile ? {} : { rotate: 360 }}
             transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
         >
             <RangoliPattern />
@@ -165,28 +166,32 @@ const FestiveCenterpiece: React.FC = () => {
       >
         <DholakIcon />
         
-        {/* Animated Music Notes */}
-        <motion.div 
-          className="absolute -top-10 -right-8 text-3xl text-[#FFD700]"
-          animate={{ y: [-15, -30, -15], opacity: [0, 1, 0], x: [0, 10, 20] }}
-          transition={{ duration: 2.5, repeat: Infinity }}
-        >
-          ♪
-        </motion.div>
-        <motion.div 
-          className="absolute -top-6 -left-8 text-2xl text-[#FF9800]"
-          animate={{ y: [-10, -25, -10], opacity: [0, 1, 0], x: [0, -10, -20] }}
-          transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-        >
-          ♫
-        </motion.div>
-         <motion.div 
-          className="absolute top-0 right-10 text-xl text-[#FF5722]"
-          animate={{ y: [-5, -20, -5], opacity: [0, 0.8, 0], scale: [0.8, 1.2, 0.8] }}
-          transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-        >
-          ✦
-        </motion.div>
+        {/* Animated Music Notes - Simplified on mobile */}
+        {!isMobile && (
+          <>
+            <motion.div 
+              className="absolute -top-10 -right-8 text-3xl text-[#FFD700]"
+              animate={{ y: [-15, -30, -15], opacity: [0, 1, 0], x: [0, 10, 20] }}
+              transition={{ duration: 2.5, repeat: Infinity }}
+            >
+              ♪
+            </motion.div>
+            <motion.div 
+              className="absolute -top-6 -left-8 text-2xl text-[#FF9800]"
+              animate={{ y: [-10, -25, -10], opacity: [0, 1, 0], x: [0, -10, -20] }}
+              transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
+            >
+              ♫
+            </motion.div>
+            <motion.div 
+              className="absolute top-0 right-10 text-xl text-[#FF5722]"
+              animate={{ y: [-5, -20, -5], opacity: [0, 0.8, 0], scale: [0.8, 1.2, 0.8] }}
+              transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+            >
+              ✦
+            </motion.div>
+          </>
+        )}
       </motion.div>
 
       {/* Bottom Border Decorative Line */}

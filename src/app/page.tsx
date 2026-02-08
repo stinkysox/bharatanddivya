@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 
 import Intro from '../../components/Intro';
+import CoupleProfile from '../../components/CoupleProfile';
 import PolaroidGallery from '../../components/PolaroidGallery';
 import Events from '../../components/Events';
 import Countdown from '../../components/Countdown';
@@ -13,11 +14,13 @@ import RSVP from '../../components/RSVP';
 import InvitedBy from '../../components/InvitedBy';
 import BackgroundAmbience from '../../components/BackgroundAmbience';
 import FestiveCenterpiece from '../../components/FestiveCenterPiece';
+import { WEDDING_CONTENT } from '../../src/data/weddingContent';
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const { dates, couple, footer } = WEDDING_CONTENT;
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -69,7 +72,7 @@ export default function Home() {
               transition={{ duration: 1, ease: "easeOut" }}
               className="text-[#c5a059] text-6xl font-royal italic tracking-widest mb-4"
             >
-              A & S
+              {couple.groom.monogram} & {couple.bride.monogram}
             </motion.div>
 
             <div className="w-32 h-[1px] bg-[#3d3428] relative overflow-hidden">
@@ -95,6 +98,9 @@ export default function Home() {
               <Intro onStart={toggleMusic} isPlaying={isPlaying} />
             </section>
 
+            {/* COUPLE PROFILE */}
+            <CoupleProfile />
+
             {/* GALLERY */}
             <section id="gallery" className="py-24 overflow-hidden">
               <PolaroidGallery />
@@ -107,7 +113,7 @@ export default function Home() {
 
             {/* COUNTDOWN */}
             <section id="countdown" className="py-24 bg-gradient-to-b from-transparent to-[#0a0a0a]">
-              <Countdown targetDate="2025-12-12T10:30:00" />
+              <Countdown targetDate={dates.countdownTarget} />
             </section>
 
             {/* 🎉 FESTIVE CENTERPIECE */}
@@ -132,7 +138,7 @@ export default function Home() {
 
             {/* FOOTER */}
             <footer className="py-12 border-t border-[#3d3428]/30 text-center text-[#3d3428] font-royal italic text-xl">
-              Handcrafted with love for Arjun & Sia
+              {footer.text}
             </footer>
 
           </motion.main>

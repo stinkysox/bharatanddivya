@@ -1,28 +1,10 @@
 
 import * as React from 'react';
 import { motion } from 'framer-motion';
+import { WEDDING_CONTENT } from '../src/data/weddingContent';
 
 const Story: React.FC = () => {
-  const storyPoints = [
-    {
-      year: "2018",
-      title: "The First Glance",
-      desc: "An unexpected meeting in the rain-kissed streets of London that changed everything.",
-      img: "https://picsum.photos/seed/wedding1/800/1000"
-    },
-    {
-      year: "2021",
-      title: "Shared Dreams",
-      desc: "Through laughter and challenges, we built a world made of mutual dreams and stardust.",
-      img: "https://picsum.photos/seed/wedding2/800/1000"
-    },
-    {
-      year: "2024",
-      title: "The Question",
-      desc: "Under the Jaipur sky, amidst 1,000 glowing lanterns, the answer was a whispered 'Yes'.",
-      img: "https://picsum.photos/seed/wedding3/800/1000"
-    }
-  ];
+  const { story } = WEDDING_CONTENT;
 
   return (
     <div className="space-y-40">
@@ -36,7 +18,7 @@ const Story: React.FC = () => {
         <div className="w-24 h-[1px] bg-[#c5a059] mx-auto opacity-40" />
       </motion.div>
 
-      {storyPoints.map((point, index) => (
+      {story.map((point, index) => (
         <div 
           key={index} 
           className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-24`}

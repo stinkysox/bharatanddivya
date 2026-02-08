@@ -5,14 +5,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import VintageLights from './VintageLights';
-
-const images = [
-  { url: 'https://picsum.photos/seed/mem1/600/600', caption: 'Summer Breeze', rotation: -3, delay: 0 },
-  { url: 'https://picsum.photos/seed/mem2/600/600', caption: 'Midnight City', rotation: 2, delay: 0.1 },
-  { url: 'https://picsum.photos/seed/mem3/600/600', caption: 'Coffee Dates', rotation: -4, delay: 0.2 },
-  { url: 'https://picsum.photos/seed/mem4/600/600', caption: 'Roadtrip 2023', rotation: 3, delay: 0.3 },
-  { url: 'https://picsum.photos/seed/mem5/600/600', caption: 'Forever Us', rotation: -1, delay: 0.4 },
-];
+import { WEDDING_CONTENT } from '../src/data/weddingContent';
 
 interface PolaroidProps {
   img: string;
@@ -60,6 +53,7 @@ const Polaroid: React.FC<PolaroidProps> = ({ img, caption, rotation, isLit }) =>
 
 const PolaroidGallery: React.FC = () => {
   const [lightsOn, setLightsOn] = useState(false);
+  const { gallery } = WEDDING_CONTENT;
 
   const toggleLights = () => {
     setLightsOn(prev => !prev);
@@ -94,7 +88,7 @@ const PolaroidGallery: React.FC = () => {
             transition={{ duration: 1 }}
             className="text-[#c5a059] uppercase tracking-[0.4em] text-xs font-semibold block mb-4"
           >
-            Memories in Light
+            {gallery.tagline}
           </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -106,14 +100,14 @@ const PolaroidGallery: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="font-royal text-5xl md:text-7xl italic text-[#f8f8f8]"
           >
-            Our Gallery
+            {gallery.title}
           </motion.h2>
         </div>
 
         {/* Gallery Scroll Container */}
         <div className="w-full relative">
           <div className="flex overflow-x-auto pb-16 px-8 md:px-20 gap-8 md:gap-16 scrollbar-hide items-center justify-start md:justify-center">
-            {images.map((img, idx) => (
+            {gallery.images.map((img, idx) => (
               <Polaroid 
                 key={idx} 
                 img={img.url} 
@@ -131,7 +125,7 @@ const PolaroidGallery: React.FC = () => {
       </div>
 
       <div className="pb-8 text-center text-white/10 text-sm font-sans z-10">
-        <p>{lightsOn ? "Beautiful moments illuminated" : "Pull the cord to toggle the mood"}</p>
+        <p>{lightsOn ? gallery.footerTextOn : gallery.footerTextOff}</p>
       </div>
     </div>
   );

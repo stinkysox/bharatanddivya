@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import RoseConfetti from './RoseConfetti';
+import { WEDDING_CONTENT } from '../src/data/weddingContent';
 
 interface CountdownProps {
   targetDate: string;
@@ -80,7 +81,7 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
         transition={isMobile ? { duration: 0 } : { duration: 4, repeat: Infinity }}
         className="mt-20 w-32 h-32 rounded-full border border-[#c5a059]/20 flex items-center justify-center p-4 text-center text-[#c5a059] text-[9px] uppercase tracking-[0.2em]"
       >
-        Save The Date<br/>12 . 12 . 25
+        Save The Date<br/>{WEDDING_CONTENT.dates.mainDate.replace(/\s/g, ' . ')}
       </motion.div>
     </div>
   );

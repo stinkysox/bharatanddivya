@@ -3,10 +3,12 @@ import * as React from 'react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, CheckCircle2 } from 'lucide-react';
+import { WEDDING_CONTENT } from '../src/data/weddingContent';
 
 const RSVP: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({ name: '', guests: '1', attendance: 'yes' });
+  const { dates } = WEDDING_CONTENT;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,7 +28,7 @@ const RSVP: React.FC = () => {
           >
             <div className="relative text-center mb-12">
               <h2 className="font-royal text-5xl italic mb-4">Will you join us?</h2>
-              <p className="text-[#f8f8f8]/40 tracking-widest uppercase text-[10px]">Please RSVP by November 1st</p>
+              <p className="text-[#f8f8f8]/40 tracking-widest uppercase text-[10px]">Please RSVP by {dates.rsvpDeadline}</p>
             </div>
 
             <form onSubmit={handleSubmit} className="relative space-y-6">

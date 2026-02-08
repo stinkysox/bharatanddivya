@@ -2,10 +2,12 @@ import * as React from 'react';
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import FireworkCelebration from './FireworkCelebration';
+import { WEDDING_CONTENT } from '../src/data/weddingContent';
 
 const InvitedBy: React.FC = () => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { amount: 0.2, once: false });
+  const { couple } = WEDDING_CONTENT;
 
   return (
     <div ref={containerRef} className="max-w-4xl mx-auto text-center space-y-16 relative">
@@ -34,10 +36,10 @@ const InvitedBy: React.FC = () => {
         >
           <div className="space-y-1">
             <span className="text-[10px] uppercase tracking-[0.3em] text-[#c5a059]/60">Groom's Parents</span>
-            <h3 className="font-royal text-3xl italic text-[#f8f8f8]">Arjun Singh</h3>
+            <h3 className="font-royal text-3xl italic text-[#f8f8f8]">{couple.groom.name}</h3>
           </div>
           <div className="py-6 px-8 rounded-3xl bg-white/5 border border-white/5 backdrop-blur-sm">
-            <p className="font-royal text-2xl text-[#f8f8f8]/90">Vikram & Meenakshi Singh</p>
+            <p className="font-royal text-2xl text-[#f8f8f8]/90">{couple.groom.parents}</p>
           </div>
         </motion.div>
 
@@ -50,10 +52,10 @@ const InvitedBy: React.FC = () => {
         >
           <div className="space-y-1">
             <span className="text-[10px] uppercase tracking-[0.3em] text-[#c5a059]/60">Bride's Parents</span>
-            <h3 className="font-royal text-3xl italic text-[#f8f8f8]">Sia Sharma</h3>
+            <h3 className="font-royal text-3xl italic text-[#f8f8f8]">{couple.bride.name}</h3>
           </div>
           <div className="py-6 px-8 rounded-3xl bg-white/5 border border-white/5 backdrop-blur-sm">
-            <p className="font-royal text-2xl text-[#f8f8f8]/90">Rajesh & Sunita Sharma</p>
+            <p className="font-royal text-2xl text-[#f8f8f8]/90">{couple.bride.parents}</p>
           </div>
         </motion.div>
       </div>

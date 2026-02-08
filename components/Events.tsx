@@ -2,35 +2,20 @@
 import * as React from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Heart, Sun, MapPin } from 'lucide-react';
+import { WEDDING_CONTENT } from '../src/data/weddingContent';
 
-const events = [
-  {
-    title: "Mehendi",
-    date: "Dec 10, 2025 • 4:00 PM",
-    venue: "Vatika Lawns",
-    icon: <Sparkles className="text-[#c5a059]" />,
-    color: "from-[#1e2d24]/30",
-    description: "A relaxed evening of music, henna, and getting together."
-  },
-  {
-    title: "Sangeet",
-    date: "Dec 11, 2025 • 7:00 PM",
-    venue: "Ballroom",
-    icon: <Sun className="text-[#c5a059]" />,
-    color: "from-[#2d1e1e]/30",
-    description: "A night of dinner and dancing with our family and friends."
-  },
-  {
-    title: "The Wedding",
-    date: "Dec 12, 2025 • 10:30 AM",
-    venue: "Royal Palace",
-    icon: <Heart className="text-[#c5a059]" />,
-    color: "from-[#2d281e]/30",
-    description: "Join us as we exchange our vows and start our new journey."
+const IconRenderer = ({ type }: { type: string }) => {
+  switch (type) {
+    case 'sparkles': return <Sparkles className="text-[#c5a059]" />;
+    case 'sun': return <Sun className="text-[#c5a059]" />;
+    case 'heart': return <Heart className="text-[#c5a059]" />;
+    default: return <Sparkles className="text-[#c5a059]" />;
   }
-];
+};
 
 const Events: React.FC = () => {
+  const { events } = WEDDING_CONTENT;
+
   return (
     <div className="max-w-7xl mx-auto px-6">
       <motion.div
@@ -53,7 +38,7 @@ const Events: React.FC = () => {
           >
             <div>
               <div className="w-12 h-12 rounded-full bg-white/5 border border-[#c5a059]/20 flex items-center justify-center mb-6">
-                {event.icon}
+                <IconRenderer type={event.iconType} />
               </div>
               <h3 className="font-royal text-3xl italic mb-2">{event.title}</h3>
               <p className="text-[#c5a059] text-sm tracking-widest font-medium mb-6">{event.date}</p>

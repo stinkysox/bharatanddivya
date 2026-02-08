@@ -1,17 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
+"use client";
+
+import * as React from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 
-import Intro from '../components/Intro';
-import PolaroidGallery from '../components/PolaroidGallery';
-import Events from '../components/Events';
-import Countdown from '../components/Countdown';
-import Destination from '../components/Destination';
-import RSVP from '../components/RSVP';
-import InvitedBy from '../components/InvitedBy';
-import BackgroundAmbience from '../components/BackgroundAmbience';
-import FestiveCenterpiece from '../components/FestiveCenterPiece';
+import Intro from '../../components/Intro';
+import PolaroidGallery from '../../components/PolaroidGallery';
+import Events from '../../components/Events';
+import Countdown from '../../components/Countdown';
+import Destination from '../../components/Destination';
+import RSVP from '../../components/RSVP';
+import InvitedBy from '../../components/InvitedBy';
+import BackgroundAmbience from '../../components/BackgroundAmbience';
+import FestiveCenterpiece from '../../components/FestiveCenterPiece';
 
-const App: React.FC = () => {
+export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -94,7 +97,7 @@ const App: React.FC = () => {
 
             {/* GALLERY */}
             <section id="gallery" className="py-24 overflow-hidden">
-              <PolaroidGallery isPlaying={isPlaying} onToggle={toggleMusic} />
+              <PolaroidGallery />
             </section>
 
             {/* EVENTS */}
@@ -107,7 +110,7 @@ const App: React.FC = () => {
               <Countdown targetDate="2025-12-12T10:30:00" />
             </section>
 
-            {/* 🎉 FESTIVE CENTERPIECE (ADDED HERE) */}
+            {/* 🎉 FESTIVE CENTERPIECE */}
             <section id="festive-centerpiece" className="py-24 bg-[#0c0c0c]">
               <FestiveCenterpiece />
             </section>
@@ -137,6 +140,4 @@ const App: React.FC = () => {
       </AnimatePresence>
     </div>
   );
-};
-
-export default App;
+}

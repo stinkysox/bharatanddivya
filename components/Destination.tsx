@@ -1,7 +1,8 @@
 
-import React from 'react';
+import * as React from 'react';
 import { motion } from 'framer-motion';
 import { Map, Plane, Hotel } from 'lucide-react';
+import Image from 'next/image';
 
 const Destination: React.FC = () => {
   return (
@@ -58,10 +59,12 @@ const Destination: React.FC = () => {
             transition={{ duration: 1.2 }}
             className="rounded-[40px] overflow-hidden aspect-[4/5] relative shadow-2xl"
           >
-            <img 
+            <Image 
               src="https://picsum.photos/seed/jaipur/1000/1200" 
-              className="w-full h-full object-cover opacity-80"
+              fill
+              className="object-cover opacity-80"
               alt="The Venue"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-transparent to-transparent" />
             

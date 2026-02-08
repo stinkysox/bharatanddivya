@@ -1,5 +1,5 @@
-
-import React, { useMemo } from 'react';
+import * as React from 'react';
+import { useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface FireworkCelebrationProps {
@@ -77,6 +77,12 @@ const Explosion = ({ x, y, delay }: { x: string; y: string; delay: number }) => 
 };
 
 const FireworkCelebration: React.FC<FireworkCelebrationProps> = ({ isActive }) => {
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const bursts = useMemo(() => [
     { x: '15%', y: '20%', delay: 0 },
     { x: '85%', y: '15%', delay: 0.5 },
@@ -88,7 +94,7 @@ const FireworkCelebration: React.FC<FireworkCelebrationProps> = ({ isActive }) =
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
       <AnimatePresence>
-        {isActive && bursts.map((burst, i) => (
+        {isMounted && isActive && bursts.map((burst, i) => (
           <Explosion key={`${i}-${isActive}`} {...burst} />
         ))}
       </AnimatePresence>

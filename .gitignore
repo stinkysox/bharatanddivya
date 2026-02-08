@@ -21,4 +21,12 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
+# Production
+.next
+out
+build
+
+# Misc
+.vercel
+next-env.d.ts
 *.sw?

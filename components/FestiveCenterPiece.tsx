@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const MarigoldGarland: React.FC<{ delay?: number; className?: string }> = ({ delay = 0, className }) => {

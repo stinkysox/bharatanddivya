@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+"use client";
+
+import * as React from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import VintageLights from './VintageLights';
 
 const images = [
@@ -14,21 +18,12 @@ interface PolaroidProps {
   img: string;
   caption: string;
   rotation: number;
-  delay: number;
   isLit: boolean;
 }
 
-const Polaroid: React.FC<PolaroidProps> = ({ img, caption, rotation, delay, isLit }) => {
+const Polaroid: React.FC<PolaroidProps> = ({ img, caption, rotation, isLit }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50, rotate: rotation * 3 }}
-      whileInView={{ opacity: 1, y: 0, rotate: rotation }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{
-        duration: 0.8,
-        ease: "easeOut",
-        delay: delay,
-      }}
+    <div
       className={`
         bg-[#fdfdfd] p-3 pb-8 shadow-2xl border border-gray-100 
         transform-gpu w-64 md:w-72 flex-shrink-0 relative z-10
@@ -36,17 +31,19 @@ const Polaroid: React.FC<PolaroidProps> = ({ img, caption, rotation, delay, isLi
       `}
       style={{
         filter: isLit ? 'brightness(1)' : 'brightness(0.4) sepia(0.5)',
+        transform: `rotate(${rotation}deg)`,
       }}
     >
       {/* Tape Effect */}
       <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-white/30 rotate-1 backdrop-blur-sm border border-white/20 shadow-sm z-20" />
 
       <div className="relative aspect-square overflow-hidden bg-gray-50 mb-4 shadow-inner">
-        <img 
+        <Image 
           src={img} 
           alt={caption} 
-          className="object-cover w-full h-full transition-transform duration-700"
-          loading="lazy"
+          fill
+          className="object-cover transition-transform duration-700"
+          sizes="(max-width: 768px) 256px, 288px"
         />
         {/* Glossy Overlay */}
         <div className="absolute inset-0 bg-gradient-to-tr from-black/5 to-white/20 pointer-events-none" />
@@ -57,7 +54,7 @@ const Polaroid: React.FC<PolaroidProps> = ({ img, caption, rotation, delay, isLi
       `}>
         {caption}
       </p>
-    </motion.div>
+    </div>
   );
 };
 
@@ -65,7 +62,6 @@ const PolaroidGallery: React.FC = () => {
   const [lightsOn, setLightsOn] = useState(false);
 
   const toggleLights = () => {
-    // Add a satisfying click sound here if desired
     setLightsOn(prev => !prev);
   };
 
@@ -123,13 +119,11 @@ const PolaroidGallery: React.FC = () => {
                 img={img.url} 
                 caption={img.caption} 
                 rotation={img.rotation} 
-                delay={img.delay} 
                 isLit={lightsOn}
               />
             ))}
           </div>
           
-          {/* Edge Gradients for scrolling */}
           <div className={`absolute left-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-r from-[#121212] to-transparent pointer-events-none z-40 transition-opacity duration-500 ${lightsOn ? 'opacity-0 md:opacity-100' : 'opacity-100'}`} />
           <div className={`absolute right-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-l from-[#121212] to-transparent pointer-events-none z-40 transition-opacity duration-500 ${lightsOn ? 'opacity-0 md:opacity-100' : 'opacity-100'}`} />
         </div>

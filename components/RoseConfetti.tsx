@@ -1,5 +1,5 @@
-
-import React, { useMemo } from 'react';
+import * as React from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 
 interface RoseConfettiProps {
@@ -53,7 +53,13 @@ const Petal: React.FC<PetalProps> = ({ delay }) => {
 };
 
 const RoseConfetti: React.FC<RoseConfettiProps> = ({ isActive }) => {
-  if (!isActive) return null;
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isActive || !isMounted) return null;
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[60] overflow-hidden">

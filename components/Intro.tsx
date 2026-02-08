@@ -1,6 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 import VinylPlayer from './VinylPlayer';
 
 interface IntroProps {
@@ -75,10 +76,13 @@ const Intro: React.FC<IntroProps> = ({ onStart, isPlaying }) => {
           <div className="relative w-[260px] md:w-[320px] lg:w-[380px] aspect-[3/4] rounded-[22px] overflow-hidden shadow-[0_40px_90px_-20px_rgba(0,0,0,0.85)] border border-[#c5a059]/30">
             
             {/* Dummy Pinterest Luxury Couple Image */}
-            <img
+            <Image
               src="https://i.pinimg.com/736x/c9/e9/7d/c9e97d9fcf62d460f5331573ecaac715.jpg"
               alt="Arjun & Sia"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 260px, (max-width: 1024px) 320px, 380px"
+              priority
             />
 
             {/* Cinematic Overlay */}

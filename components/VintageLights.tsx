@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface VintageLightsProps {
@@ -8,6 +8,11 @@ interface VintageLightsProps {
 
 const VintageLights: React.FC<VintageLightsProps> = ({ isOn, onToggle }) => {
   const bulbCount = 20;
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
   
   // Retro Christmas/Party colors
   const colors = [
@@ -56,7 +61,7 @@ const VintageLights: React.FC<VintageLightsProps> = ({ isOn, onToggle }) => {
                 }}
                 transition={{
                   duration: 0.5,
-                  delay: Math.random() * 0.2, // Random startup delay for realism
+                  delay: isMounted ? Math.random() * 0.2 : 0, // Solid guard for random delay
                 }}
                 className="w-4 h-5 relative"
                 style={{
@@ -105,7 +110,7 @@ const VintageLights: React.FC<VintageLightsProps> = ({ isOn, onToggle }) => {
         </motion.div>
         
         {/* "Pull / Press" Hint */}
-        <AnimatePresence>
+        {isMounted && <AnimatePresence>
           {!isOn && (
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -122,7 +127,7 @@ const VintageLights: React.FC<VintageLightsProps> = ({ isOn, onToggle }) => {
               </svg>
             </motion.div>
           )}
-        </AnimatePresence>
+        </AnimatePresence>}
       </div>
     </div>
   );

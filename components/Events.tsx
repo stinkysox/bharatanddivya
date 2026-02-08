@@ -1,5 +1,5 @@
 
-import React from 'react';
+import * as React from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Heart, Sun, MapPin } from 'lucide-react';
 

@@ -1,8 +1,14 @@
-
-import React from 'react';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const BackgroundAmbience: React.FC = () => {
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
       {/* Animated Mesh Gradients */}
@@ -29,7 +35,7 @@ const BackgroundAmbience: React.FC = () => {
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
       
       {/* Floating Bokeh Particles */}
-      {[...Array(20)].map((_, i) => (
+      {isMounted && [...Array(20)].map((_, i) => (
         <motion.div
           key={i}
           initial={{ 

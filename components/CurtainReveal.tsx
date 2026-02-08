@@ -25,7 +25,7 @@ const CurtainReveal: React.FC<CurtainRevealProps> = ({ children, className = "" 
         {!isOpen && (
           <>
             {/* Sliding Panels Container - Overflow Hidden */}
-            <div className="absolute inset-x-[-20px] inset-y-[-10px] z-20 flex overflow-hidden pointer-events-none">
+            <div className="absolute inset-0 z-20 flex overflow-hidden pointer-events-none">
               {/* Left Curtain - Custom Deep Red */}
               <motion.div
                 initial={{ x: 0 }}
@@ -56,10 +56,6 @@ const CurtainReveal: React.FC<CurtainRevealProps> = ({ children, className = "" 
               className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none"
             >
               <div className="relative flex items-center justify-center w-full h-full">
-                {/* Horizontal Gold Thread - Solid */}
-                <div 
-                  className="absolute top-1/2 left-[-100px] right-[-100px] h-[1.5px] bg-[#c5a059] -translate-y-1/2 shadow-[0_1px_2px_rgba(0,0,0,0.5)]" 
-                />
                 
                 {/* Wax Seal (Stamp) - Solid & Premium */}
                 <div className="relative z-10 w-16 h-16 flex items-center justify-center">

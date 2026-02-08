@@ -4,6 +4,8 @@ import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-mo
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import VinylPlayer from './VinylPlayer';
+import CurtainReveal from './CurtainReveal';
+import { WEDDING_CONTENT } from '../src/data/weddingContent';
 
 interface IntroProps {
   onStart: () => void;
@@ -91,6 +93,7 @@ const SwipableCard = ({ src, index, onSwipe }: { src: string, index: number, onS
   );
 };
 
+
 const Intro: React.FC<IntroProps> = ({ onStart, isPlaying }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -109,6 +112,8 @@ const Intro: React.FC<IntroProps> = ({ onStart, isPlaying }) => {
     setCurrentIndex((prev) => (prev + 1) % FALLBACK_IMAGES.length);
   };
 
+  const { dates, location } = WEDDING_CONTENT;
+
   return (
     <div className="relative w-full min-h-screen flex flex-col items-center justify-center px-6 lg:px-20 py-20 overflow-hidden">
       
@@ -119,7 +124,7 @@ const Intro: React.FC<IntroProps> = ({ onStart, isPlaying }) => {
         transition={{ duration: 3, ease: "easeOut" }}
         className="absolute inset-0 flex items-center justify-center pointer-events-none"
       >
-        <span className="text-[40vw] font-royal italic text-[#c5a059] select-none">AS</span>
+        <span className="text-[40vw] font-royal italic text-[#c5a059] select-none">{WEDDING_CONTENT.couple.commonMonogram}</span>
       </motion.div>
 
       <div className="relative z-10 w-full max-w-7xl flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
@@ -132,35 +137,37 @@ const Intro: React.FC<IntroProps> = ({ onStart, isPlaying }) => {
             transition={{ duration: 1.2, delay: 0.5 }}
           >
             <p className="text-[#c5a059] uppercase tracking-[0.4em] text-xs font-semibold mb-6">
-              You are invited to
+              {WEDDING_CONTENT.intro.tagline}
             </p>
 
             <h1 className="font-royal text-6xl md:text-8xl italic text-[#f8f8f8] mb-8 leading-none">
-              Arjun 
+              {WEDDING_CONTENT.couple.groom.name.split(' ')[0]} 
               <span className="text-3xl md:text-5xl align-middle font-light text-[#c5a059]/40 block md:inline lg:mx-4">
                 &
               </span> 
-              Sia
+              {WEDDING_CONTENT.couple.bride.name.split(' ')[0]}
             </h1>
 
-            <div className="flex flex-col md:flex-row items-center lg:items-start gap-4 md:gap-8 mb-12">
-              <div className="text-left">
-                <p className="text-[#f8f8f8]/80 font-light tracking-[0.2em] text-lg uppercase">
-                  12 Dec 2025
-                </p>
-                <div className="w-12 h-[1px] bg-[#c5a059] mt-2" />
-              </div>
+            <CurtainReveal>
+              <div className="flex flex-col md:flex-row items-center lg:items-start gap-4 md:gap-8 mb-12">
+                <div className="text-left">
+                  <p className="text-[#f8f8f8]/80 font-light tracking-[0.2em] text-lg uppercase">
+                    {dates.mainDate}
+                  </p>
+                  <div className="w-12 h-[1px] bg-[#c5a059] mt-2" />
+                </div>
 
-              <div className="text-left">
-                <p className="text-[#f8f8f8]/80 font-light tracking-[0.2em] text-lg uppercase">
-                  Jaipur, India
-                </p>
-                <div className="w-12 h-[1px] bg-[#c5a059] mt-2" />
+                <div className="text-left">
+                  <p className="text-[#f8f8f8]/80 font-light tracking-[0.2em] text-lg uppercase">
+                    {location.city}
+                  </p>
+                  <div className="w-12 h-[1px] bg-[#c5a059] mt-2" />
+                </div>
               </div>
-            </div>
+            </CurtainReveal>
 
             <p className="max-w-md text-[#f8f8f8]/50 font-light text-lg leading-relaxed mb-8 hidden md:block">
-              We are so happy to celebrate our wedding with you. Join us for a weekend of love, laughter, and new beginnings.
+              {WEDDING_CONTENT.intro.description}
             </p>
           </motion.div>
         </div>

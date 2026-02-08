@@ -19,9 +19,9 @@ export const WEDDING_CONTENT = {
     commonMonogram: "AS"
   },
   dates: {
-    mainDate: "12 Dec 2025",
-    countdownTarget: "2025-12-12T10:30:00",
-    rsvpDeadline: "November 1st"
+    mainDate: "20 Aug 2026",
+    countdownTarget: "2026-08-20T10:30:00",
+    rsvpDeadline: "July 1st"
   },
   location: {
     city: "Jaipur, India",
@@ -56,21 +56,21 @@ export const WEDDING_CONTENT = {
   events: [
     {
       title: "Mehendi",
-      date: "Dec 10, 2025 • 4:00 PM",
+      date: "Aug 18, 2026 • 4:00 PM",
       venue: "Vatika Lawns",
       description: "A relaxed evening of music, henna, and getting together.",
       iconType: "sparkles"
     },
     {
       title: "Sangeet",
-      date: "Dec 11, 2025 • 7:00 PM",
+      date: "Aug 19, 2026 • 7:00 PM",
       venue: "Ballroom",
       description: "A night of dinner and dancing with our family and friends.",
       iconType: "sun"
     },
     {
       title: "The Wedding",
-      date: "Dec 12, 2025 • 10:30 AM",
+      date: "Aug 20, 2026 • 10:30 AM",
       venue: "Royal Palace",
       description: "Join us as we exchange our vows and start our new journey.",
       iconType: "heart"

@@ -2,58 +2,17 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import RoseConfetti from './RoseConfetti';
+import CurtainReveal from './CurtainReveal';
 import { WEDDING_CONTENT } from '../src/data/weddingContent';
 
 interface CountdownProps {
   targetDate: string;
 }
 
-const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
-  const isMobile = useMediaQuery('(max-width: 768px)');
+const Countdown: React.FC<CountdownProps> = () => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { amount: 0.3 });
   
-  const [timeLeft, setTimeLeft] = useState<{
-    days: number;
-    hours: number;
-    minutes: number;
-    seconds: number;
-  }>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-
-  useEffect(() => {
-    const calculateTime = () => {
-      const difference = +new Date(targetDate) - +new Date();
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60),
-        });
-      }
-    };
-
-    const timer = setInterval(calculateTime, 1000);
-    return () => clearInterval(timer);
-  }, [targetDate]);
-
-  const Item = ({ val, label }: { val: number; label: string }) => (
-    <div className="flex flex-col items-center">
-      <div className="relative">
-        <motion.div
-          key={val}
-          initial={isMobile ? { opacity: 0 } : { y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          className="text-6xl md:text-8xl font-royal text-[#f8f8f8] mb-2"
-        >
-          {val.toString().padStart(2, '0')}
-        </motion.div>
-        <div className="absolute -bottom-2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#c5a059] to-transparent opacity-30" />
-      </div>
-      <span className="text-[10px] uppercase tracking-[0.4em] text-[#c5a059] mt-4 font-semibold">{label}</span>
-    </div>
-  );
-
   return (
     <div ref={containerRef} className="max-w-4xl mx-auto px-6 flex flex-col items-center relative">
       <RoseConfetti isActive={isInView} />
@@ -61,27 +20,39 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        className="mb-16 text-center"
+        className="mb-12 text-center"
       >
-        <h3 className="font-royal text-3xl italic text-[#f8f8f8]/70">Until the big day</h3>
+        <span className="text-[#c5a059] uppercase tracking-[0.5em] text-xs font-semibold mb-4 block">Our Celebration</span>
+        <h3 className="font-royal text-6xl md:text-8xl italic text-[#f8f8f8]">Save the Date</h3>
       </motion.div>
       
-      <div className="flex flex-wrap justify-center gap-10 md:gap-20">
-        <Item val={timeLeft.days} label="Days" />
-        <Item val={timeLeft.hours} label="Hours" />
-        <Item val={timeLeft.minutes} label="Minutes" />
-        <Item val={timeLeft.seconds} label="Seconds" />
-      </div>
+      <CurtainReveal className="w-full">
+        <div className="flex flex-col items-center gap-8 py-12 px-8 bg-white/5 border border-white/10 rounded-[32px] backdrop-blur-xl">
+          <div className="flex flex-col items-center">
+            <p className="text-[#c5a059] text-sm tracking-[0.6em] uppercase font-bold mb-4">August</p>
+            <div className="font-royal text-9xl text-[#f8f8f8] leading-none">20</div>
+            <p className="text-[#c5a059] text-sm tracking-[0.6em] uppercase font-bold mt-4">2026</p>
+          </div>
+          
+          <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#c5a059] to-transparent opacity-40" />
+          
+          <div className="text-center">
+            <p className="text-[#f8f8f8]/70 font-light tracking-[0.3em] text-xl uppercase italic">
+              Jaipur, Rajasthan
+            </p>
+          </div>
+        </div>
+      </CurtainReveal>
 
       <motion.div 
-        animate={isMobile ? { opacity: 0.4 } : { 
+        animate={{ 
           opacity: [0.2, 0.4, 0.2],
           scale: isInView ? [1, 1.05, 1] : 1
         }}
-        transition={isMobile ? { duration: 0 } : { duration: 4, repeat: Infinity }}
-        className="mt-20 w-32 h-32 rounded-full border border-[#c5a059]/20 flex items-center justify-center p-4 text-center text-[#c5a059] text-[9px] uppercase tracking-[0.2em]"
+        transition={{ duration: 4, repeat: Infinity }}
+        className="mt-16 w-38 h-38 rounded-full border border-[#c5a059]/20 flex items-center justify-center p-8 text-center text-[#c5a059] text-[10px] uppercase tracking-[0.3em] italic"
       >
-        Save The Date<br/>{WEDDING_CONTENT.dates.mainDate.replace(/\s/g, ' . ')}
+        Join us as we<br/>begin our journey
       </motion.div>
     </div>
   );

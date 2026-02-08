@@ -13,7 +13,6 @@ import Destination from '../../components/Destination';
 import RSVP from '../../components/RSVP';
 import InvitedBy from '../../components/InvitedBy';
 import BackgroundAmbience from '../../components/BackgroundAmbience';
-import FestiveCenterpiece from '../../components/FestiveCenterPiece';
 import { WEDDING_CONTENT } from '../../src/data/weddingContent';
 
 export default function Home() {
@@ -116,10 +115,6 @@ export default function Home() {
               <Countdown targetDate={dates.countdownTarget} />
             </section>
 
-            {/* 🎉 FESTIVE CENTERPIECE */}
-            <section id="festive-centerpiece" className="py-24 bg-[#0c0c0c]">
-              <FestiveCenterpiece />
-            </section>
 
             {/* DESTINATION */}
             <section id="destination" className="py-24 px-6">

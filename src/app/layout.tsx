@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Arjun & Sia | The Royal Wedding",
+  title: "Arjun & Sia | Wedding",
   description: "A Royal Union of Arjun and Sia",
   openGraph: {
-    title: "Arjun & Sia | The Royal Wedding",
+    title: "Arjun & Sia | Wedding",
     description: "A Royal Union of Arjun and Sia",
     images: ["https://i.pinimg.com/736x/c9/e9/7d/c9e97d9fcf62d460f5331573ecaac715.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arjun & Sia | The Royal Wedding",
+    title: "Arjun & Sia | Wedding",
     description: "A Royal Union of Arjun and Sia",
     images: ["https://i.pinimg.com/736x/c9/e9/7d/c9e97d9fcf62d460f5331573ecaac715.jpg"],
   },

@@ -1,11 +1,12 @@
 "use client";
 
-import * as React from 'react';
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import VintageLights from './VintageLights';
-import { WEDDING_CONTENT } from '../src/data/weddingContent';
+import * as React from "react";
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react"; // Import for clean arrows
+import FairyLights from "./FairyLights";
+import { WEDDING_CONTENT } from "../src/data/weddingContent";
 
 interface PolaroidProps {
   img: string;
@@ -14,120 +15,115 @@ interface PolaroidProps {
   isLit: boolean;
 }
 
+/* ================= POLAROID ================= */
+
 const Polaroid: React.FC<PolaroidProps> = ({ img, caption, rotation, isLit }) => {
   return (
-    <div
-      className={`
-        bg-[#fdfdfd] p-3 pb-8 shadow-2xl border border-gray-100 
-        transform-gpu w-64 md:w-72 flex-shrink-0 relative z-10
-        transition-all duration-700
-      `}
+    <motion.div
+      whileHover={{ rotate: rotation + 2, scale: 1.03, y: -5 }}
+      animate={{ y: isLit ? [0, -4, 0] : 0 }}
+      transition={{ duration: 6, repeat: Infinity }}
+      className="relative flex-shrink-0 bg-[#fbf7f0] p-3 pb-8 shadow-2xl border border-[#e6d5b8]/50 w-64 md:w-72 rounded-sm select-none"
       style={{
-        filter: isLit ? 'brightness(1)' : 'brightness(0.4) sepia(0.5)',
         transform: `rotate(${rotation}deg)`,
+        filter: isLit
+          ? "brightness(1) drop-shadow(0 0 15px rgba(255,255,255,0.05))"
+          : "brightness(0.12) grayscale(0.6)",
       }}
     >
-      {/* Tape Effect */}
-      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-white/30 rotate-1 backdrop-blur-sm border border-white/20 shadow-sm z-20" />
-
-      <div className="relative aspect-square overflow-hidden bg-gray-50 mb-4 shadow-inner">
-        <Image 
-          src={img} 
-          alt={caption} 
-          fill
-          className="object-cover transition-transform duration-700"
-          sizes="(max-width: 768px) 256px, 288px"
-        />
-        {/* Glossy Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-black/5 to-white/20 pointer-events-none" />
+      <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-6 bg-[#fff7e8]/60 rotate-1 border border-[#e6d5b8]/30 z-20 backdrop-blur-[2px]" />
+      <div className="relative aspect-square overflow-hidden bg-[#ddd] mb-4 pointer-events-none">
+        <Image src={img} alt={caption} fill className="object-cover" sizes="288px" />
       </div>
-      <p className={`
-        font-royal italic text-center text-xl select-none transition-colors duration-500
-        ${isLit ? 'text-gray-700' : 'text-gray-500'}
-      `}>
+      <p className={`font-royal italic text-center text-xl transition-colors duration-500 ${isLit ? "text-[#5a4a2f]" : "text-[#6d5c3d]/40"}`}>
         {caption}
       </p>
-    </div>
+    </motion.div>
   );
 };
 
+/* ================= GALLERY SECTION ================= */
+
 const PolaroidGallery: React.FC = () => {
   const [lightsOn, setLightsOn] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const { gallery } = WEDDING_CONTENT;
 
-  const toggleLights = () => {
-    setLightsOn(prev => !prev);
+  // Scroll function for the arrow buttons
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = 400; // Adjust for scroll speed
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
-    <div className={`
-      relative w-full min-h-screen flex flex-col overflow-x-hidden transition-colors duration-1000
-      ${lightsOn ? 'bg-[#1a1a1a]' : 'bg-[#0a0a0a]'}
-    `}>
-      
-      {/* Ambient Background Light Effect */}
-      <div 
-        className={`fixed inset-0 pointer-events-none transition-opacity duration-1000 ${lightsOn ? 'opacity-100' : 'opacity-0'}`}
-        style={{
-          background: 'radial-gradient(circle at 50% 10%, rgba(100, 80, 50, 0.15), transparent 70%)'
-        }}
-      />
-
-      {/* Lights Section */}
-      <div className="relative w-full z-50 pt-2">
-        <VintageLights isOn={lightsOn} onToggle={toggleLights} />
+    <section
+      className="relative w-full py-24 transition-colors duration-1000 overflow-hidden"
+      style={{ backgroundColor: lightsOn ? "var(--wedding-primary, #061427)" : "#000000" }} // Using primary color for lit state
+    >
+      {/* Fairy Lights */}
+      <div className="absolute top-0 left-0 w-full z-50">
+        <FairyLights isOn={lightsOn} onToggle={() => setLightsOn(!lightsOn)} />
       </div>
 
-      <div className="flex-grow flex flex-col justify-center pb-20 mt-8 relative z-30">
+      {/* Header */}
+      <div className="text-center mb-12 mt-28 relative z-10 px-6">
+        <motion.span animate={{ opacity: lightsOn ? 1 : 0.3 }} className="text-wedding-accent uppercase tracking-[0.4em] text-[10px] md:text-xs font-semibold block mb-4">
+          {gallery.tagline}
+        </motion.span>
+        <motion.h2 animate={{ opacity: lightsOn ? 1 : 0.2, textShadow: lightsOn ? "0 0 25px rgba(197,160,89,0.2)" : "none" }} className="font-royal text-4xl md:text-7xl italic text-wedding-text">
+          {gallery.title}
+        </motion.h2>
+      </div>
+
+      {/* Horizontal Scroll Track */}
+      <div className="relative z-10 w-full group px-4 md:px-12">
         
-        {/* Header Text */}
-        <div className="text-center mb-16 px-4">
-          <motion.span 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: lightsOn ? 1 : 0.3 }}
-            transition={{ duration: 1 }}
-            className="text-[#c5a059] uppercase tracking-[0.4em] text-xs font-semibold block mb-4"
+        {/* Desktop Navigation Arrows */}
+        <div className="hidden md:block">
+          <button 
+            onClick={() => scroll("left")}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-40 p-3 rounded-full bg-white/5 border border-wedding-accent/30 text-wedding-accent hover:bg-wedding-accent/10 transition-all active:scale-95"
           >
-            {gallery.tagline}
-          </motion.span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ 
-              opacity: lightsOn ? 1 : 0.2, 
-              y: 0,
-              textShadow: lightsOn ? '0 0 30px rgba(255,255,255,0.2)' : 'none'
-            }}
-            transition={{ duration: 0.8 }}
-            className="font-royal text-5xl md:text-7xl italic text-[#f8f8f8]"
+            <ChevronLeft size={32} />
+          </button>
+          <button 
+            onClick={() => scroll("right")}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-40 p-3 rounded-full bg-white/5 border border-wedding-accent/30 text-wedding-accent hover:bg-wedding-accent/10 transition-all active:scale-95"
           >
-            {gallery.title}
-          </motion.h2>
+            <ChevronRight size={32} />
+          </button>
         </div>
 
-        {/* Gallery Scroll Container */}
-        <div className="w-full relative">
-          <div className="flex overflow-x-auto pb-16 px-8 md:px-20 gap-8 md:gap-16 scrollbar-hide items-center justify-start md:justify-center">
-            {gallery.images.map((img, idx) => (
-              <Polaroid 
-                key={idx} 
-                img={img.url} 
-                caption={img.caption} 
-                rotation={img.rotation} 
-                isLit={lightsOn}
-              />
-            ))}
-          </div>
-          
-          <div className={`absolute left-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-r from-[#121212] to-transparent pointer-events-none z-40 transition-opacity duration-500 ${lightsOn ? 'opacity-0 md:opacity-100' : 'opacity-100'}`} />
-          <div className={`absolute right-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-l from-[#121212] to-transparent pointer-events-none z-40 transition-opacity duration-500 ${lightsOn ? 'opacity-0 md:opacity-100' : 'opacity-100'}`} />
+        {/* Scrollable Container */}
+        <div 
+          ref={scrollRef}
+          className="flex gap-12 md:gap-20 overflow-x-auto overflow-y-hidden px-8 md:px-[15vw] py-16 no-scrollbar snap-x snap-mandatory"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
+        >
+          {gallery.images.map((img, idx) => (
+            <div key={idx} className="snap-center">
+              <Polaroid img={img.url} caption={img.caption} rotation={img.rotation} isLit={lightsOn} />
+            </div>
+          ))}
         </div>
-
       </div>
 
-      <div className="pb-8 text-center text-white/10 text-sm font-sans z-10">
-        <p>{lightsOn ? gallery.footerTextOn : gallery.footerTextOff}</p>
+      {/* Footer */}
+      <div className="mt-8 text-center px-6 transition-opacity duration-700">
+        <p className={`text-sm tracking-[0.2em] uppercase font-light ${lightsOn ? 'text-wedding-accent/40' : 'text-wedding-accent/10'}`}>
+          {lightsOn ? gallery.footerTextOn : gallery.footerTextOff}
+        </p>
       </div>
-    </div>
+
+      <style jsx global>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+      `}</style>
+    </section>
   );
 };
 

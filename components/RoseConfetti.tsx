@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useMediaQuery } from '../hooks/useMediaQuery';
@@ -6,19 +8,25 @@ interface RoseConfettiProps {
   isActive: boolean;
 }
 
-// Added interface for Petal props
 interface PetalProps {
   delay: number;
 }
 
-// Fix: Using React.FC to handle React-intrinsic props like 'key' correctly during mapping
 const Petal: React.FC<PetalProps> = ({ delay }) => {
   const size = useMemo(() => Math.random() * 15 + 10, []);
   const left = useMemo(() => Math.random() * 100, []);
   const duration = useMemo(() => Math.random() * 5 + 5, []);
   const sway = useMemo(() => Math.random() * 100 - 50, []);
+  
+  // Updated color palette to White and Rose shades
   const color = useMemo(() => {
-    const colors = ['#8b0000', '#b22222', '#dc143c', '#ff69b4', '#db7093'];
+    const colors = [
+      '#FFFFFF', // Pure White
+      '#FFF0F3', // Soft Shell White
+      '#FFB7C5', // Cherry Blossom Pink
+      '#FF4D6D', // Rose Pink
+      '#C9184A', // Deep Rose Red
+    ]; 
     return colors[Math.floor(Math.random() * colors.length)];
   }, []);
 
@@ -45,7 +53,8 @@ const Petal: React.FC<PetalProps> = ({ delay }) => {
         height: size * 0.8,
         backgroundColor: color,
         borderRadius: '50% 0 50% 50%',
-        boxShadow: 'inset -2px -2px 5px rgba(0,0,0,0.2)',
+        // Added a softer shadow for the white/rose petals
+        boxShadow: 'inset -1px -1px 3px rgba(0,0,0,0.1)',
         pointerEvents: 'none',
       }}
     />

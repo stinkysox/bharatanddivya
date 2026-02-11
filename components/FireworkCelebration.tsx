@@ -39,7 +39,7 @@ const Particle = ({ color, angle, distance, delay, isMobile }: { color: string, 
 
 const Explosion = ({ x, y, delay, isMobile }: { x: string; y: string; delay: number, isMobile: boolean }) => {
   const particles = useMemo(() => {
-    const colors = ['#c5a059', '#f8f8f8', '#ffd700', '#ffffff'];
+    const colors = ['#c5a059', '#f8f1e7', '#ffd700', '#ffffff']; // wedding-accent, wedding-text, gold, white
     const count = isMobile ? 8 : 24;
     return Array.from({ length: count }).map((_, i) => ({
       angle: (360 / count) * i + Math.random() * 15,
@@ -69,7 +69,7 @@ const Explosion = ({ x, y, delay, isMobile }: { x: string; y: string; delay: num
           width: isMobile ? 20 : 40,
           height: isMobile ? 20 : 40,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, #c5a059 0%, transparent 70%)',
+          background: 'radial-gradient(circle, #c5a059 0%, transparent 70%)', // wedding-accent
           filter: isMobile ? 'blur(5px)' : 'blur(10px)',
         }}
       />

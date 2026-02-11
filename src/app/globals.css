@@ -4,23 +4,36 @@
 
 @layer base {
   body {
-    @apply bg-[#0c0c0c] text-[#f8f8f8] font-['Montserrat'] overflow-x-hidden m-0;
+    @apply bg-[#0b1d3a] text-[#f8f1e7] font-['Montserrat'] overflow-x-hidden m-0;
   }
 }
 
+/* Royal serif font for headings */
 .font-royal {
   font-family: 'Cormorant Garamond', serif;
 }
 
+/* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0c0c0c;
+  background: #0b1d3a; /* wedding-primary */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3d3428;
+  background: #c5a059; /* wedding-accent (Gold) */
   border-radius: 10px;
+  border: 2px solid #0b1d3a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d8c7a6; /* lighter gold on hover */
+}
+
+/* Firefox support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c5a059 #0b1d3a;
 }

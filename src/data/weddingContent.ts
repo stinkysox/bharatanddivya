@@ -1,12 +1,12 @@
 export const WEDDING_CONTENT = {
   couple: {
     groom: {
-      name: "Arjun Singh",
-      fullName: "Arjun Singh",
+      name: "Bharat Reddy",
+      fullName: "Bharat Reddy",
       parents: "Shri Vikram Singh & Smt. Meenakshi Singh",
       education: "MBA, IIM Ahmedabad",
       profession: "Senior Product Manager",
-      monogram: "A"
+      monogram: "B"
     },
     bride: {
       name: "Sia Sharma",
@@ -16,35 +16,49 @@ export const WEDDING_CONTENT = {
       profession: "Creative Director",
       monogram: "S"
     },
-    commonMonogram: "AS"
+    commonMonogram: "BS"
   },
   dates: {
-    mainDate: "20 Aug 2026",
-    countdownTarget: "2026-08-20T10:30:00",
-    rsvpDeadline: "July 1st"
+    mainDate: "August 20, 2026",
+    countdownTarget: "2026-08-20T18:00:00",
+    rsvpDeadline: "August 01, 2026",
+    month: "August",
+    day: "20",
+    year: "2026"
   },
   location: {
-    city: "Jaipur, India",
-    venue: "Mandawa Haveli, Jaipur",
-    description: "We have chosen a beautiful venue in the heart of Jaipur to host our celebration. It is a peaceful place where history and modern comfort meet.",
-    mapLink: "https://goo.gl/maps/example"
+    city: "Jaipur",
+    state: "Rajasthan",
+    venue: "The Raj Palace",
+    description: "An 18th-century palace hotel offering a glimpse into the royal lifestyle of Rajasthan.",
+    mapLink: "https://maps.app.goo.gl/YourMapLink",
+    buttonLabel: "View on Maps"
   },
   intro: {
     tagline: "You are invited to",
     description: "We are so happy to celebrate our wedding with you. Join us for a weekend of love, laughter, and new beginnings.",
+    scrollLabel: "Scroll to explore",
+    swipeLabel: "Swipe to view more photos",
+    playLabel: "Tap to Play",
+    nowPlayingLabel: "Now Playing",
+    songTitle: "Kabira",
     stackImages: [
       "https://i.pinimg.com/736x/75/48/ef/7548efc7f37868a665b2855cf290688d.jpg",
       "https://i.pinimg.com/736x/1d/16/1b/1d161bf166f6ecc070404b0c715d6294.jpg",
       "https://i.pinimg.com/736x/44/fd/05/44fd0505b0960bbca7e1bac93eb110ff.jpg",
-      "https://i.pinimg.com/1200x/01/6a/ce/016acee3a979c9efe029f5b1c96d90e9.jpg",
-      "https://i.pinimg.com/736x/69/fd/23/69fd23be37aee62288ce33c06b6cbb78.jpg"
-    ]
+      "https://i.pinimg.com/1200x/01/6a/ce/016acee3a979c9efe029f5b1c96d90e9.jpg"
+    ],
+    decorations: {
+      topLeft: "https://i.postimg.cc/sxrJrW4T/Adobe-Express-file-(7).png"
+    }
   },
   gallery: {
     title: "Our Gallery",
     tagline: "Memories in Light",
-    footerTextOn: "Beautiful moments illuminated",
-    footerTextOff: "Pull the cord to toggle the mood",
+    footerTextOn: "Tap the lights to set the mood",
+    footerTextOff: "Turn on the lights for a magical view",
+    lightsOnLabel: "Turn Lights On",
+    lightsOffLabel: "Turn Lights Off",
     images: [
       { url: 'https://picsum.photos/seed/mem1/600/600', caption: 'Summer Breeze', rotation: -3 },
       { url: 'https://picsum.photos/seed/mem2/600/600', caption: 'Midnight City', rotation: 2 },
@@ -53,30 +67,35 @@ export const WEDDING_CONTENT = {
       { url: 'https://picsum.photos/seed/mem5/600/600', caption: 'Forever Us', rotation: -1 },
     ]
   },
-  events: [
-    {
-      title: "Mehendi",
-      date: "Aug 18, 2026 • 4:00 PM",
-      venue: "Vatika Lawns",
-      description: "A relaxed evening of music, henna, and getting together.",
-      iconType: "sparkles"
-    },
-    {
-      title: "Sangeet",
-      date: "Aug 19, 2026 • 7:00 PM",
-      venue: "Ballroom",
-      description: "A night of dinner and dancing with our family and friends.",
-      iconType: "sun"
-    },
-    {
-      title: "The Wedding",
-      date: "Aug 20, 2026 • 10:30 AM",
-      venue: "Royal Palace",
-      description: "Join us as we exchange our vows and start our new journey.",
-      iconType: "heart"
-    }
-  ],
+  events: {
+    title: "Wedding Events",
+    tagline: "The Celebration",
+    items: [
+      {
+        title: "Mehendi",
+        date: "Aug 18, 2026 • 4:00 PM",
+        venue: "Vatika Lawns",
+        description: "A relaxed evening of music, henna, and getting together.",
+        iconType: "sparkles"
+      },
+      {
+        title: "Sangeet",
+        date: "Aug 19, 2026 • 7:00 PM",
+        venue: "Ballroom",
+        description: "A night of dinner and dancing with our family and friends.",
+        iconType: "sun"
+      },
+      {
+        title: "The Wedding",
+        date: "Aug 20, 2026 • 10:30 AM",
+        venue: "Royal Palace",
+        description: "Join us as we exchange our vows and start our new journey.",
+        iconType: "heart"
+      }
+    ]
+  },
   destination: {
+    tagline: "The Venue",
     accommodation: {
       title: "Accommodations",
       description: "Suites have been reserved for all our guests at the venue."
@@ -88,27 +107,29 @@ export const WEDDING_CONTENT = {
     image: "https://picsum.photos/seed/jaipur/1000/1200",
     quote: "A beautiful space for a special day."
   },
-  story: [
-    {
-      year: "2018",
-      title: "The First Glance",
-      desc: "An unexpected meeting in the rain-kissed streets of London that changed everything.",
-      img: "https://picsum.photos/seed/wedding1/800/1000"
+  rsvp: {
+    title: "Will you join us?",
+    taglinePrefix: "Please RSVP by",
+    nameLabel: "Your Name",
+    namePlaceholder: "Enter your name",
+    guestsLabel: "Number of Guests",
+    attendanceLabel: "Attending?",
+    attendanceOptions: {
+      yes: "Yes, I'll be there",
+      no: "Sadly, I can't come"
     },
-    {
-      year: "2021",
-      title: "Shared Dreams",
-      desc: "Through laughter and challenges, we built a world made of mutual dreams and stardust.",
-      img: "https://picsum.photos/seed/wedding2/800/1000"
-    },
-    {
-      year: "2024",
-      title: "The Question",
-      desc: "Under the Jaipur sky, amidst 1,000 glowing lanterns, the answer was a whispered 'Yes'.",
-      img: "https://picsum.photos/seed/wedding3/800/1000"
-    }
-  ],
+    buttonLabel: "Send RSVP",
+    successTitle: "Thank You",
+    successMessage: "We have received your response. We look forward to celebrating with you!"
+  },
+  families: {
+    tagline: "Together with",
+    title: "Our Families",
+    groomParentsLabel: "Groom's Parents",
+    brideParentsLabel: "Bride's Parents",
+    quote: "Your presence is the greatest gift we could ask for. We look forward to seeing you there."
+  },
   footer: {
-    text: "Handcrafted with love for Arjun & Sia"
+    text: "Handcrafted with love for Bharat & Sia"
   }
 };

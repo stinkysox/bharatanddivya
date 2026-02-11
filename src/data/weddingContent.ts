@@ -3,35 +3,35 @@ export const WEDDING_CONTENT = {
     groom: {
       name: "Bharat Reddy",
       fullName: "Bharat Reddy",
-      parents: "Shri Vikram Singh & Smt. Meenakshi Singh",
+      parents: "Shri Vikram Reddy & Smt. Meenakshi Reddy",
       education: "MBA, IIM Ahmedabad",
       profession: "Senior Product Manager",
       monogram: "B"
     },
     bride: {
-      name: "Sia Sharma",
-      fullName: "Sia Sharma",
+      name: "Divya Sharma",
+      fullName: "Divya Sharma",
       parents: "Shri Rajesh Sharma & Smt. Sunita Sharma",
       education: "M.Des, NID Ahmedabad",
       profession: "Creative Director",
-      monogram: "S"
+      monogram: "D"
     },
-    commonMonogram: "BS"
+    commonMonogram: "BD"
   },
   dates: {
     mainDate: "August 20, 2026",
-    countdownTarget: "2026-08-20T18:00:00",
+    countdownTarget: "2026-08-20T10:30:00", 
     rsvpDeadline: "August 01, 2026",
     month: "August",
     day: "20",
     year: "2026"
   },
   location: {
-    city: "Jaipur",
-    state: "Rajasthan",
-    venue: "The Raj Palace",
-    description: "An 18th-century palace hotel offering a glimpse into the royal lifestyle of Rajasthan.",
-    mapLink: "https://maps.app.goo.gl/YourMapLink",
+    city: "Hyderabad",
+    state: "Telangana",
+    venue: "Taj Falaknuma Palace",
+    description: "Known as the 'Mirror of the Sky', this historic palace offers a majestic setting overlooking the City of Pearls.",
+    mapLink: "https://goo.gl/maps/example",
     buttonLabel: "View on Maps"
   },
   intro: {
@@ -74,21 +74,21 @@ export const WEDDING_CONTENT = {
       {
         title: "Mehendi",
         date: "Aug 18, 2026 • 4:00 PM",
-        venue: "Vatika Lawns",
+        venue: "The Rajasthani Gardens, Falaknuma",
         description: "A relaxed evening of music, henna, and getting together.",
         iconType: "sparkles"
       },
       {
         title: "Sangeet",
         date: "Aug 19, 2026 • 7:00 PM",
-        venue: "Ballroom",
+        venue: "The Durbar Hall",
         description: "A night of dinner and dancing with our family and friends.",
         iconType: "sun"
       },
       {
         title: "The Wedding",
         date: "Aug 20, 2026 • 10:30 AM",
-        venue: "Royal Palace",
+        venue: "Main Palace Mandapam",
         description: "Join us as we exchange our vows and start our new journey.",
         iconType: "heart"
       }
@@ -98,13 +98,13 @@ export const WEDDING_CONTENT = {
     tagline: "The Venue",
     accommodation: {
       title: "Accommodations",
-      description: "Suites have been reserved for all our guests at the venue."
+      description: "Suites have been reserved for all our guests at the palace."
     },
     travel: {
       title: "Travel",
-      description: "Shuttles will be available from Jaipur International Airport (JAI)."
+      description: "Shuttles will be available from Rajiv Gandhi International Airport (HYD)."
     },
-    image: "https://picsum.photos/seed/jaipur/1000/1200",
+    image: "https://images.unsplash.com/photo-1623150240974-5519f71b2d4f?q=80&w=1000&auto=format&fit=crop", 
     quote: "A beautiful space for a special day."
   },
   rsvp: {
@@ -130,6 +130,6 @@ export const WEDDING_CONTENT = {
     quote: "Your presence is the greatest gift we could ask for. We look forward to seeing you there."
   },
   footer: {
-    text: "Handcrafted with love for Bharat & Sia"
+    text: "Handcrafted with love for Bharat & Divya"
   }
 };

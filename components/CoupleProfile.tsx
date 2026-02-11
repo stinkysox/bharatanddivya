@@ -161,8 +161,13 @@ const CoupleProfile: React.FC = () => {
               scale: [1, 1.05, 1] 
             }}
             transition={{ 
-              initial: { duration: 1 },
-              animate: { 
+              opacity: { duration: 1 },
+              scale: { 
+                duration: 4, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              },
+              y: { 
                 duration: 4, 
                 repeat: Infinity, 
                 ease: "easeInOut" 

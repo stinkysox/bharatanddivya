@@ -17,7 +17,7 @@ const IconRenderer = ({ type }: { type: string }) => {
 };
 
 const Events: React.FC = () => {
-  const { events } = WEDDING_CONTENT;
+  const { events, intro } = WEDDING_CONTENT;
   
   // Ref and View tracking to trigger confetti
   const sectionRef = useRef(null);
@@ -90,7 +90,7 @@ const Events: React.FC = () => {
               repeat: Infinity, 
               ease: "easeInOut" 
             }}
-            src="https://i.postimg.cc/dV24Vw1K/download-(40)-Picsart-Background-Remover.png" 
+            src={typeof intro.sections.temple === 'string' ? intro.sections.temple : intro.sections.temple.src} 
             alt="Temple Illustration" 
             className="w-full h-auto max-w-[200px] md:max-w-[220px] object-contain opacity-90 drop-shadow-[0_20px_50px_rgba(var(--wedding-accent-rgb),0.15)]"
           />

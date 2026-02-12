@@ -6,7 +6,7 @@ import { GraduationCap, Briefcase, Heart } from 'lucide-react';
 import { WEDDING_CONTENT } from '../src/data/weddingContent';
 
 const CoupleProfile: React.FC = () => {
-  const { couple } = WEDDING_CONTENT;
+  const { couple, intro } = WEDDING_CONTENT;
 
   return (
     <section className="relative py-24 px-6 overflow-hidden bg-transparent">
@@ -173,7 +173,7 @@ const CoupleProfile: React.FC = () => {
                 ease: "easeInOut" 
               }
             }}
-            src="https://i.postimg.cc/8PFRjDZw/download-(20)-Picsart-Background-Remover-Picsart-Ai-Image-Enhancer.png" 
+            src={typeof intro.sections.lotus === 'string' ? intro.sections.lotus : intro.sections.lotus.src} 
             alt="Lotus Flower Decoration" 
             // Updated size here:
             className="w-full h-auto max-w-[180px] md:max-w-[220px] object-contain drop-shadow-2xl opacity-80"

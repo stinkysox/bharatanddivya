@@ -69,8 +69,8 @@ const Intro: React.FC<IntroProps> = ({ onStart, isPlaying }) => {
         className="relative z-10 mt-12 w-full max-w-[280px] sm:max-w-sm md:max-w-md lg:max-w-lg px-4"
       >
         <img 
-          src="https://i.postimg.cc/nh6wCXF4/download-(20)-Picsart-Ai-Image-Enhancer-Picsart-Background-Remover.png" 
-          alt="Couple Portrait" 
+          src={typeof intro.decorations?.bottomPortrait === 'string' ? intro.decorations.bottomPortrait : intro.decorations?.bottomPortrait?.src} 
+          alt="Elephant Decoration" 
           className="w-full h-auto object-contain drop-shadow-2xl"
         />
       </motion.div>

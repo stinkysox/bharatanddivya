@@ -9,7 +9,7 @@ import FairyLights from "./FairyLights";
 import { WEDDING_CONTENT } from "../src/data/weddingContent";
 
 interface PolaroidProps {
-  img: string;
+  img: any;
   caption: string;
   rotation: number;
   isLit: boolean;

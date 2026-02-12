@@ -4,7 +4,7 @@ import { ChevronDown } from 'lucide-react';
 
 interface IntroDecorationsProps {
   monogram: string;
-  topLeftImage?: string;
+  topLeftImage?: any;
   scrollLabel: string;
 }
 
@@ -36,7 +36,7 @@ const IntroDecorations: React.FC<IntroDecorationsProps> = ({
           className="absolute -top-10 -left-10 md:-top-20 md:-left-20 lg:-top-32 lg:-left-32 w-40 md:w-64 lg:w-80 pointer-events-none z-0 opacity-60 rotate-[-6deg]"
         >
           <img 
-            src={topLeftImage} 
+            src={typeof topLeftImage === 'string' ? topLeftImage : topLeftImage?.src} 
             alt="" 
             className="w-full h-auto"
           />

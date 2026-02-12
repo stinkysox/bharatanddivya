@@ -19,7 +19,7 @@ export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const { dates, couple, footer } = WEDDING_CONTENT;
+  const { dates, couple, footer, intro } = WEDDING_CONTENT;
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {

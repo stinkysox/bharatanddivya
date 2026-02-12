@@ -7,7 +7,7 @@ import { WEDDING_CONTENT } from '../src/data/weddingContent';
 const InvitedBy: React.FC = () => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { amount: 0.2, once: false });
-  const { couple, families } = WEDDING_CONTENT;
+  const { couple, families, intro } = WEDDING_CONTENT;
 
   return (
     <div ref={containerRef} className="max-w-4xl mx-auto text-center space-y-16 relative">
@@ -87,7 +87,7 @@ const InvitedBy: React.FC = () => {
             repeat: Infinity, 
             ease: "easeInOut" 
           }}
-          src="https://i.postimg.cc/nLWcWbt1/download-(43)-Picsart-Ai-Image-Enhancer-Picsart-Background-Remover.png" 
+          src={typeof intro.sections.god === 'string' ? intro.sections.god : intro.sections.god.src} 
           alt="Couple Silhouette" 
           className="w-full h-auto max-w-[180px] md:max-w-[220px] object-contain opacity-80 drop-shadow-2xl"
         />

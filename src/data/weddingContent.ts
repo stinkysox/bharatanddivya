@@ -1,3 +1,15 @@
+import topCorner from '../assets/topcornerimage.png';
+import lotusImage from '../assets/lotus.jpg';
+import templeImage from '../assets/temple.jpg';
+import godImage from '../assets/god.jpg';
+import elephantImage from '../assets/elephant.jpg';
+import memory1 from '../assets/memory1.jpg';
+import memory2 from '../assets/memory2.jpg';
+import memory3 from '../assets/memory3.jpg';
+import memory4 from '../assets/memory4.jpg';
+import memory5 from '../assets/memory5.jpg';
+import memory6 from '../assets/memory6.jpg';
+
 export const WEDDING_CONTENT = {
   couple: {
     groom: {
@@ -49,7 +61,13 @@ export const WEDDING_CONTENT = {
       "https://i.pinimg.com/1200x/01/6a/ce/016acee3a979c9efe029f5b1c96d90e9.jpg"
     ],
     decorations: {
-      topLeft: "https://i.postimg.cc/sxrJrW4T/Adobe-Express-file-(7).png"
+      topLeft: topCorner,
+      bottomPortrait: elephantImage
+    },
+    sections: {
+      lotus: lotusImage,
+      temple: templeImage,
+      god: godImage
     }
   },
   gallery: {
@@ -60,11 +78,11 @@ export const WEDDING_CONTENT = {
     lightsOnLabel: "Turn Lights On",
     lightsOffLabel: "Turn Lights Off",
     images: [
-      { url: 'https://picsum.photos/seed/mem1/600/600', caption: 'Summer Breeze', rotation: -3 },
-      { url: 'https://picsum.photos/seed/mem2/600/600', caption: 'Midnight City', rotation: 2 },
-      { url: 'https://picsum.photos/seed/mem3/600/600', caption: 'Coffee Dates', rotation: -4 },
-      { url: 'https://picsum.photos/seed/mem4/600/600', caption: 'Roadtrip 2023', rotation: 3 },
-      { url: 'https://picsum.photos/seed/mem5/600/600', caption: 'Forever Us', rotation: -1 },
+      { url: memory1, caption: 'Summer Breeze', rotation: -3 },
+      { url: memory2, caption: 'Midnight City', rotation: 2 },
+      { url: memory3, caption: 'Coffee Dates', rotation: -4 },
+      { url: memory4, caption: 'Roadtrip 2023', rotation: 3 },
+      { url: memory5, caption: 'Forever Us', rotation: -1 },
     ]
   },
   events: {
@@ -104,7 +122,7 @@ export const WEDDING_CONTENT = {
       title: "Travel",
       description: "Shuttles will be available from Rajiv Gandhi International Airport (HYD)."
     },
-    image: "https://images.unsplash.com/photo-1623150240974-5519f71b2d4f?q=80&w=1000&auto=format&fit=crop", 
+    image: memory6, 
     quote: "A beautiful space for a special day."
   },
   rsvp: {
